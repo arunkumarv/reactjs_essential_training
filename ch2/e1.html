@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // let ul = React.createElement(
+        //     'ul',
+        //     { style: { color: 'blue' }},
+        //     React.createElement('li', null, 'Monday'),
+        //     React.createElement('li', null, 'Tuesday'),
+        //     React.createElement('li', null, 'Wednesday'),
+        // );
+        // let robot = "😎";
+        // let cowboy = "🐄";
+        // let moon = "🌖";
+        // let name = "react";
+        const dishes = [
+            "porotta beef",
+            "meals",
+            "chicken biriyani",
+        ];
+        const dishObjects = dishes.map((dish, i) => ({
+            id: i,
+            title: dish 
+        }));
+        function Header(props) {
+            console.log(props);
+            return (
+                <header>
+                    <h1>{props.name}'s Kitchen</h1>
+                </header>
+            );
+        }
+        function Main(props) {
+            return (
+                <section>
+                    <img
+                        height={200}
+                        src="./chembarathi.jpeg"
+                        alt="chembarathi poovu"
+                    />
+                    <ul>
+                        {props.dishes.map( (dish, i) => {
+                            return <li key={dish.id}>{ dish.title }</li>
+                        })}
+                    </ul>
+                </section>
+            );
+        }
+        function App() {
+            return (
+                <React.Fragment>
+                    <Header name="Cindy"/>
+                    <Main adjective="amazing" dishes={dishObjects}/>
+                    <Footer year={new Date().getFullYear()} />
+                </React.Fragment>
+            );
+        }
+        function Footer(props) {
+            return (
+                <footer>
+                    <p>Copyright {props.year}</p>
+                </footer>
+            );
+        }
+        ReactDOM.render(
+            // ul,
+
+            // <ul>
+            //     <li>{robot}</li>
+            //     <li>{cowboy}</li>
+            //     <li>{moon}</li>
+            //     <li>{name.toUpperCase()}</li>
+            // </ul>,
+            <App />,
+            document.getElementById("root")
+        );
+    </script>
+</body>
+
+</html>
